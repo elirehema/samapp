@@ -1,0 +1,83 @@
+name: Builds
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [opened, labeled, master]
+
+
+
+env:
+  flutter_version: "1.22.5"
+  java_version: "11"
+  GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+  MY_GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.java_version }}
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - name: Cache Repair
+        run: flutter pub cache repair
+      - name: Flutter upgrade
+        run: flutter upgrade
+      - name: Flutter accept licences
+        run: yes | flutter doctor --android-licenses
+      - name: Flutter doctor
+        run: flutter doctor
+      - name: Jdk version
+        run: echo $ANDROID_SDK_PATH/ndk-bundle
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Select channel
+        run: flutter channel stable
+      - name: Update build runner
+        run: flutter packages pub run build_runner watch build
+      - name: Run Clean to reduce app sizes
+        run: flutter clean
+      - name: Build apk
+        run: flutter build apk --ignore-deprecation --no-tree-shake-icons  --debug --no-sound-null-safety
+      - name: Build abi's apk
+        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --no-tree-shake-icons  --debug --no-sound-null-safety --ignore-deprecation
+      - name: Build app-bundle
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64  --debug --no-sound-null-safety --ignore-deprecation
+
+
+      - name: Deploy apk
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          token: ${{ secrets.GITHUBTOKEN }}
+          branch: master # The branch the action should deploy to.
+          repository-name: elirehema/appfiles
+          target-folder: mobile/samapp/apks
+          folder: build/app/outputs/ # The folder the action should deploy.
+
+      - name: Deploy appbundle 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          token: ${{ secrets.GITHUBTOKEN }}
+          branch: master # The branch the action should deploy to.
+          repository-name: elirehema/appfiles
+          target-folder: mobile/samapp/appbundle
+          folder: build/app/outputs/bundle/debug # The folder the action should deploy.
+
+#      - name: Deploy sample files 🚀
+#        uses: JamesIves/github-pages-deploy-action@4.1.0
+#        with:
+#          token: ${{ secrets.GITHUBTOKEN }}
+#          branch: master # The branch the action should deploy to.
+#          repository-name: hesadev/apks
+#          target-folder: mobile/posm/samplejson
+#          folder: assets/json # The folder the action should deploy.
