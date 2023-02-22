@@ -21,7 +21,7 @@ part 'post_api_service.chopper.dart';
 @ChopperApi()
 abstract class PostApiService extends ChopperService {
   /// POST REQUESTS
-  @Post(path: '/auth/dash_login')
+  @Post(path: '/auth/signin')
   Future<Response<AuthenticationResponse>> authenticate( @Body() AuthenticationRequest body);
 
   @Post(path: '/auth/app_login')
