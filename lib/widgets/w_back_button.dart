@@ -8,7 +8,7 @@ class WBackButton extends StatelessWidget{
     ThemeData _theme = Theme.of(context);
     return GestureDetector(
       onTap: () => Navigator.of(context).pop(),
-      child: Icon(Icons.arrow_back_ios_new_rounded, color: _theme.primaryColor,),
+      child: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white,),
 
     );
   }

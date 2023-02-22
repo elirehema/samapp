@@ -19,7 +19,7 @@ class _$PostApiService extends PostApiService {
   @override
   Future<Response<AuthenticationResponse>> authenticate(
       AuthenticationRequest body) {
-    final $url = '/auth/dash_login';
+    final $url = '/auth/signin';
     final $body = body;
     final $request = Request(
       'POST',

@@ -2,8 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 
-Color colorPrimary = new Color.fromRGBO(237, 30, 101,1.0);
-Color colorPrimaryDark = new Color.fromRGBO(25, 28, 27, 1.0);
+Color colorPrimary = new Color.fromRGBO(30,157,37,1.0);
+Color colorPrimaryDark = new Color.fromRGBO(5,87,18,1.0);
 
 Color secondaryPrimary = new Color.fromRGBO(25, 28, 27,1);
 Color colorAccent = new Color.fromRGBO(234, 234, 234, 1.0);

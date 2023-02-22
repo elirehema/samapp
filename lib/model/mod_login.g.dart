@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'mod_authentication_request.dart';
+part of 'mod_login.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -25,10 +25,10 @@ class _$AuthenticationRequestSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.email;
+    value = object.username;
     if (value != null) {
       result
-        ..add('email')
+        ..add('username')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -54,8 +54,8 @@ class _$AuthenticationRequestSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'email':
-          result.email = serializers.deserialize(value,
+        case 'username':
+          result.username = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'password':
@@ -71,7 +71,7 @@ class _$AuthenticationRequestSerializer
 
 class _$AuthenticationRequest extends AuthenticationRequest {
   @override
-  final String? email;
+  final String? username;
   @override
   final String? password;
 
@@ -79,7 +79,7 @@ class _$AuthenticationRequest extends AuthenticationRequest {
           [void Function(AuthenticationRequestBuilder)? updates]) =>
       (new AuthenticationRequestBuilder()..update(updates))._build();
 
-  _$AuthenticationRequest._({this.email, this.password}) : super._();
+  _$AuthenticationRequest._({this.username, this.password}) : super._();
 
   @override
   AuthenticationRequest rebuild(
@@ -94,14 +94,14 @@ class _$AuthenticationRequest extends AuthenticationRequest {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AuthenticationRequest &&
-        email == other.email &&
+        username == other.username &&
         password == other.password;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, username.hashCode);
     _$hash = $jc(_$hash, password.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -110,7 +110,7 @@ class _$AuthenticationRequest extends AuthenticationRequest {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'AuthenticationRequest')
-          ..add('email', email)
+          ..add('username', username)
           ..add('password', password))
         .toString();
   }
@@ -120,9 +120,9 @@ class AuthenticationRequestBuilder
     implements Builder<AuthenticationRequest, AuthenticationRequestBuilder> {
   _$AuthenticationRequest? _$v;
 
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
 
   String? _password;
   String? get password => _$this._password;
@@ -133,7 +133,7 @@ class AuthenticationRequestBuilder
   AuthenticationRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _email = $v.email;
+      _username = $v.username;
       _password = $v.password;
       _$v = null;
     }
@@ -155,8 +155,8 @@ class AuthenticationRequestBuilder
   AuthenticationRequest build() => _build();
 
   _$AuthenticationRequest _build() {
-    final _$result =
-        _$v ?? new _$AuthenticationRequest._(email: email, password: password);
+    final _$result = _$v ??
+        new _$AuthenticationRequest._(username: username, password: password);
     replace(_$result);
     return _$result;
   }
