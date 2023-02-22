@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
           themeMode: _themeMode,
           debugShowCheckedModeBanner: false,
           routes: routes,
-          title: 'Inventory',
+          title: 'SamGas',
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
