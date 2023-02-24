@@ -60,57 +60,6 @@ class ScreenLoginEmail extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
 
-                  // TextFormField(
-                  //   controller: username,
-                  //   cursorColor: _theme.primaryColor,
-                  //   style: _theme.textTheme.bodyText1,
-                  //   decoration: InputDecoration(
-                  //     prefixStyle: TextStyle(fontSize: 5.0),
-                  //     hintText: 'User Name',
-                  //
-                  //     errorStyle: TextStyle(
-                  //         color: Colors.redAccent, fontSize: 12.0),
-                  //     contentPadding: EdgeInsets.symmetric(
-                  //         horizontal: 15.0,
-                  //         vertical: 18.0
-                  //     ),
-                  //     fillColor: _theme.inputDecorationTheme.fillColor,
-                  //     // border: _theme.inputDecorationTheme.border,
-                  //     // focusedBorder: _theme.inputDecorationTheme.border,
-                  //     isDense: true,
-                  //     hintStyle: TextStyle(
-                  //       color: Colors.black87.withOpacity(0.3),
-                  //       fontSize: 13,
-                  //     ),
-                  //     enabledBorder: UnderlineInputBorder(
-                  //       // borderRadius: BorderRadius.circular(12),
-                  //       borderSide: const BorderSide(
-                  //           color: Colors.black26,
-                  //           width: 1.1
-                  //       ),
-                  //     ),
-                  //     focusedBorder: UnderlineInputBorder(
-                  //       // borderRadius: BorderRadius.circular(12),
-                  //       borderSide: const BorderSide(
-                  //           color: Colors.black54,
-                  //           width: 1.2
-                  //       ),
-                  //     ),
-                  //   ),
-                  //   onChanged: (String? value) {},
-                  //   onSaved: (String? value) {
-                  //     print(value);
-                  //     // This optional block of code can be used to run
-                  //     // code when the user saves the form.
-                  //   },
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Field is required';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
-
                   TextFormField(
                     controller: username,
                     textInputAction: TextInputAction.next,
@@ -159,38 +108,6 @@ class ScreenLoginEmail extends StatelessWidget {
                   ),
 
                   SizedBox(height: 30.0,),
-
-                  // TextFormField(
-                  //   controller: password,
-                  //   cursorColor: _theme.primaryColor,
-                  //   style: _theme.textTheme.bodyText1,
-                  //   decoration: InputDecoration(
-                  //     prefixStyle: TextStyle(fontSize: 5.0),
-                  //     //prefixIcon: Icon(Icons.text_fields_sharp),
-                  //     hintText: '********',
-                  //     errorStyle: TextStyle(
-                  //         color: Colors.redAccent, fontSize: 12.0),
-                  //     filled: true,
-                  //     contentPadding: EdgeInsets.symmetric(
-                  //         horizontal: 15.0, vertical: 18.0),
-                  //     fillColor: _theme.inputDecorationTheme.fillColor,
-                  //     border: _theme.inputDecorationTheme.border,
-                  //     focusedBorder: _theme.inputDecorationTheme.border,
-                  //     isDense: true,
-                  //   ),
-                  //   onChanged: (String? value) {},
-                  //   onSaved: (String? value) {
-                  //     print(value);
-                  //     // This optional block of code can be used to run
-                  //     // code when the user saves the form.
-                  //   },
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Field is required';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
 
                   TextFormField(
                     controller: password,
@@ -242,21 +159,6 @@ class ScreenLoginEmail extends StatelessWidget {
 
                   SizedBox(height: 30.0,),
 
-                  // ElevatedButton(
-                  //   onPressed: () async{
-                  //     var request = AuthenticationRequest.from("root", "password");
-                  //     this._loginAuthenticate(context, request);
-                  //     /**
-                  //         Navigator.of(context).push(MaterialPageRoute<void>(
-                  //         builder: (BuildContext context) => ScreenHome(),
-                  //         ),
-                  //         );
-                  //      **/
-                  //   },
-                  //   child: Text('Continue'.toUpperCase()),
-                  //   style: Utils.coloredButtonStyleWithRadius(
-                  //       _theme.primaryColor, 25.0, elevation: 4.0),),
-
                   ElevatedButton(
                     child: Container(
                       height: 20,
@@ -267,15 +169,6 @@ class ScreenLoginEmail extends StatelessWidget {
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                       backgroundColor: MaterialStateProperty.all<Color>(_theme.primaryColor),
-                      // shape: MaterialStateProperty.all<
-                      //     RoundedRectangleBorder>(
-                      //     RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(30.0),
-                      //         side: BorderSide(
-                      //           color: Colors.black,
-                      //         )
-                      //     )
-                      // )
                     ),
                     onPressed: () async{
                       var request = AuthenticationRequest.from("root", "password");

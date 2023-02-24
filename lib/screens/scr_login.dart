@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:samapp/model/index.dart';
+import 'package:samapp/screens/scr_create_ac.dart';
 import 'package:samapp/screens/scr_home.dart';
+import 'package:samapp/screens/scr_login_email.dart';
 import 'package:samapp/utils/index.dart';
 import 'package:samapp/widgets/index.dart';
 
@@ -18,106 +20,206 @@ class ScreenLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: _theme.primaryColor,
-        leading: WBackButton(),
-        actions: [
-          Container(margin: EdgeInsets.only(right: 20),
-            child: Icon(Icons.language_rounded),)
-        ],
-      ),
-      body: Container(
-        child: Card(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 25.0, left: 5.0),
-                child: Text('Username', style: _theme.textTheme.labelMedium,),),
-              TextFormField(
-                controller: username,
-                cursorColor: _theme.primaryColor,
-                style: _theme.textTheme.bodyText1,
-                decoration: InputDecoration(
-                  prefixStyle: TextStyle(fontSize: 5.0),
-                  //prefixIcon: Icon(Icons.text_fields_sharp),
-                  hintText: 'username',
-                  errorStyle: TextStyle(
-                      color: Colors.redAccent, fontSize: 12.0),
-                  filled: true,
-                  contentPadding: EdgeInsets.symmetric(
-                      horizontal: 15.0, vertical: 18.0),
-                  fillColor: _theme.inputDecorationTheme.fillColor,
-                  border: _theme.inputDecorationTheme.border,
-                  focusedBorder: _theme.inputDecorationTheme.border,
-                  isDense: true,
+      backgroundColor: scaffoldBackgroundColor,
+
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+
+            SizedBox(height: 20,),
+
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Icon(
+                  Icons.language_rounded,
+                  color: colorPrimary,
                 ),
-                onChanged: (String? value) {},
-                onSaved: (String? value) {
-                  print(value);
-                  // This optional block of code can be used to run
-                  // code when the user saves the form.
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Field is required';
-                  }
-                  return null;
-                },
               ),
-              SizedBox(height: 30.0,),
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 25.0, left: 5.0),
-                child: Text('Password', style: _theme.textTheme.labelMedium,),),
-              TextFormField(
-                controller: password,
-                cursorColor: _theme.primaryColor,
-                style: _theme.textTheme.bodyText1,
-                decoration: InputDecoration(
-                  prefixStyle: TextStyle(fontSize: 5.0),
-                  //prefixIcon: Icon(Icons.text_fields_sharp),
-                  hintText: '********',
-                  errorStyle: TextStyle(
-                      color: Colors.redAccent, fontSize: 12.0),
-                  filled: true,
-                  contentPadding: EdgeInsets.symmetric(
-                      horizontal: 15.0, vertical: 18.0),
-                  fillColor: _theme.inputDecorationTheme.fillColor,
-                  border: _theme.inputDecorationTheme.border,
-                  focusedBorder: _theme.inputDecorationTheme.border,
-                  isDense: true,
+            ),
+
+            SizedBox(height: 150.0,),
+
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                "Login",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.0,
+                    color: Colors.black
                 ),
-                onChanged: (String? value) {},
-                onSaved: (String? value) {
-                  print(value);
-                  // This optional block of code can be used to run
-                  // code when the user saves the form.
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Field is required';
-                  }
-                  return null;
-                },
               ),
-              SizedBox(height: 30.0,),
-              ElevatedButton(onPressed: () async{
-                var request = AuthenticationRequest.from("root", "password");
-                this._loginAuthenticate(context, request);
-                /**
-                Navigator.of(context).push(MaterialPageRoute<void>(
-                  builder: (BuildContext context) => ScreenHome(),
-                ),
-                );
-                **/
-              }, child: Text('Continue'.toUpperCase()),
-                style: Utils.coloredButtonStyleWithRadius(
-                    _theme.primaryColor, 25.0, elevation: 4.0),)
-            ],
-          ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+
+                  TextFormField(
+                    textInputAction: TextInputAction.next,
+                    cursorColor: _theme.primaryColor,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13,
+                    ),
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 5),
+                      hintText: 'Phone No...',
+                      hintStyle: TextStyle(
+                        color: Colors.black87.withOpacity(0.3),
+                        fontSize: 13,
+                      ),
+                      prefixIcon: Icon(
+                          Icons.phone,
+                        color: Colors.black87.withOpacity(0.3),
+                        size: 18,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.send,
+                          color: _theme.primaryColor,
+                          size: 18,
+                        ),
+
+                        onPressed: (){
+                          var request = AuthenticationRequest.from("root", "password");
+                          this._loginAuthenticate(context, request);
+                          /**
+                              Navigator.of(context).push(MaterialPageRoute<void>(
+                              builder: (BuildContext context) => ScreenHome(),
+                              ),
+                              );
+                           **/
+                        },
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                            color: _theme.primaryColor,
+                            width: 1.1
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                            color: _theme.primaryColor,
+                            width: 1.15
+                        ),
+                      ),
+                    ),
+                    onChanged: (String? value) {},
+                    onSaved: (String? value) {
+                      print(value);
+                      // This optional block of code can be used to run
+                      // code when the user saves the form.
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Field is required';
+                      }
+                      return null;
+                    },
+                  ),
+
+                  SizedBox(height: 10.0,),
+
+                  Divider(color: _theme.primaryColorLight,),
+
+                  SizedBox(height: 25.0,),
+
+                  ElevatedButton(
+                      child: Container(
+                        height: 20,
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.email_outlined,
+                                color: Colors.white,
+                                size: 18,
+                              ),
+
+                              SizedBox(width: 5,),
+
+                              Text('Login with email'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(_theme.primaryColor),
+                          // shape: MaterialStateProperty.all<
+                          //     RoundedRectangleBorder>(
+                          //     RoundedRectangleBorder(
+                          //         borderRadius: BorderRadius.circular(30.0),
+                          //         side: BorderSide(
+                          //           color: Colors.black,
+                          //         )
+                          //     )
+                          // )
+                      ),
+                    onPressed: () async {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (
+                          context) => ScreenLoginEmail()));
+                    }
+                  )
+                ],
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                      "Don't have an account?",
+                    style: TextStyle(
+                        color: Colors.black
+                    ),
+                  ),
+
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (
+                          context) => ScreenCreateAccount()));
+                    },
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      visualDensity: VisualDensity(horizontal: -2, vertical: -4),
+                      primary: Colors.black.withOpacity(0.2),
+                    ),
+                    child:  Text(
+                      "Register",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                        color: Colors.black
+                    ),
+                    ),
+                  ),
+
+                  Text(
+                    "now",
+                    style: TextStyle(
+                        color: Colors.black
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          ],
         ),
       ),
     );
