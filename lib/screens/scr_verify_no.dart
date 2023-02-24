@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:samapp/screens/index.dart';
 import 'package:samapp/widgets/index.dart';
 
+import '../utils/colors.dart';
 import '../utils/util.dart';
 
 class ScreenVerifyNumber extends StatelessWidget{
@@ -11,11 +12,11 @@ class ScreenVerifyNumber extends StatelessWidget{
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);
     return Scaffold(
-        backgroundColor: _theme.scaffoldBackgroundColor,
+        backgroundColor: scaffoldBackgroundColor,
         appBar: AppBar(
           leading: WBackButton(),
           elevation: 0,
-          title: Text('Verify your number'.toUpperCase(), style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16.0)),
+          title: Text('Verify your number'.toUpperCase(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.0)),
         ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 35.0),
@@ -40,13 +41,19 @@ class ScreenVerifyNumber extends StatelessWidget{
                 },
               ),
               SizedBox(height: 30.0,),
+
               ElevatedButton(
                 onPressed: (){
                  Navigator.of(context).push( MaterialPageRoute<void>(
                     builder: (BuildContext context) => ScreenAccountDetails(),
                   ));
                 },
-                child: Text('Next'.toUpperCase()),
+                child: Text(
+                    'Next'.toUpperCase(),
+                  style: TextStyle(
+                      color: Colors.white
+                  ),
+                ),
                 style: Utils.coloredButtonStyleWithRadius(_theme.primaryColor, 25.0, elevation: 4.0 ),)
             ],
           ),
