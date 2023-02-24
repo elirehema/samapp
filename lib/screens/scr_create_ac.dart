@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import '../data/post_api_service.dart';
 import '../model/mod_otp_request.dart';
-import '../utils/colors.dart';
 import '../utils/sharedpreference.dart';
 import '../utils/util.dart';
 
@@ -18,343 +17,70 @@ class ScreenCreateAccount extends StatelessWidget{
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: scaffoldBackgroundColor,
-      // appBar: AppBar(
-      //   leading: WBackButton(),
-      //   elevation: 0,
-      //   title: Text('Create your account'.toUpperCase(), style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16.0)),
-      // ),
-      // body: Container(
-      //   padding: EdgeInsets.symmetric(horizontal: 35.0),
-      //   child: Column(
-      //     mainAxisSize: MainAxisSize.min,
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Padding(padding: EdgeInsets.only(top: 20.0, bottom: 25.0, left: 5.0),
-      //         child: Text('Phone Number', style: _theme.textTheme.labelMedium,),),
-      //       TextFormField(
-      //         controller: phone,
-      //         cursorColor: _theme.primaryColor,
-      //         style: _theme.textTheme.bodyText1,
-      //         decoration: InputDecoration(
-      //           prefixStyle: TextStyle(fontSize: 5.0),
-      //           //prefixIcon: Icon(Icons.text_fields_sharp),
-      //           hintText: '+255 757 627 048',
-      //           errorStyle: TextStyle(color: Colors.redAccent, fontSize: 12.0),
-      //           filled: true,
-      //           contentPadding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
-      //           fillColor: _theme.inputDecorationTheme.fillColor,
-      //           border:  _theme.inputDecorationTheme.border,
-      //           focusedBorder:  _theme.inputDecorationTheme.border,
-      //           isDense: true,
-      //         ),
-      //         onChanged: (String? value) {
-      //         },
-      //         onSaved: (String? value) {
-      //           print(value);
-      //           // This optional block of code can be used to run
-      //           // code when the user saves the form.
-      //         },
-      //         validator: (value) {
-      //           if ( value == null || value.isEmpty) {
-      //             return 'Field is required';
-      //           }
-      //           return null;
-      //         },
-      //       ),
-      //       SizedBox(height: 30.0,),
-      //       ElevatedButton( onPressed: (){
-      //
-      //         /**
-      //             var _otp = OtpRequest.request(phone.text);
-      //             _requestOtpToken(context, _otp);
-      //             **/
-      //
-      //
-      //
-      //         Navigator.of(context).push(MaterialPageRoute<void>(
-      //             builder: (BuildContext context) => ScreenVerifyNumber(),
-      //           ),
-      //         );
-      //
-      //       }, child: Text('Send Verification'.toUpperCase()),
-      //         style: Utils.coloredButtonStyleWithRadius(_theme.primaryColor, 25.0, elevation: 4.0 ),)
-      //     ],
-      //   ),
-      // )
-
-      body: SingleChildScrollView(
+      backgroundColor: _theme.scaffoldBackgroundColor,
+      appBar: AppBar(
+        leading: WBackButton(),
+        elevation: 0,
+        title: Text('Create your account'.toUpperCase(), style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16.0)),
+      ),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 35.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(padding: EdgeInsets.only(top: 20.0, bottom: 25.0, left: 5.0),
+              child: Text('Phone Number', style: _theme.textTheme.labelMedium,),),
+            TextFormField(
+              controller: phone,
+              cursorColor: _theme.primaryColor,
+              style: _theme.textTheme.bodyText1,
+              decoration: InputDecoration(
+                prefixStyle: TextStyle(fontSize: 5.0),
+                //prefixIcon: Icon(Icons.text_fields_sharp),
+                hintText: '+255 757 627 048',
+                errorStyle: TextStyle(color: Colors.redAccent, fontSize: 12.0),
+                filled: true,
+                contentPadding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
+                fillColor: _theme.inputDecorationTheme.fillColor,
+                border:  _theme.inputDecorationTheme.border,
+                focusedBorder:  _theme.inputDecorationTheme.border,
+                isDense: true,
+              ),
+              onChanged: (String? value) {
+              },
+              onSaved: (String? value) {
+                print(value);
+                // This optional block of code can be used to run
+                // code when the user saves the form.
+              },
+              validator: (value) {
+                if ( value == null || value.isEmpty) {
+                  return 'Field is required';
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 30.0,),
+            ElevatedButton( onPressed: (){
 
-            SizedBox(height: 20,),
+              /**
+                  var _otp = OtpRequest.request(phone.text);
+                  _requestOtpToken(context, _otp);
+                  **/
 
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Icon(
-                  Icons.language_rounded,
-                  color: colorPrimary,
+
+
+              Navigator.of(context).push(MaterialPageRoute<void>(
+                  builder: (BuildContext context) => ScreenVerifyNumber(),
                 ),
-              ),
-            ),
+              );
 
-            SizedBox(height: 150.0,),
-
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                "Register",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0,
-                    color: Colors.black
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-
-                  TextFormField(
-                    // controller: username,
-                    textInputAction: TextInputAction.next,
-                    cursorColor: _theme.primaryColor,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 13,
-                    ),
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 5),
-                      hintText: 'Name',
-                      hintStyle: TextStyle(
-                        color: Colors.black87.withOpacity(0.3),
-                        fontSize: 13,
-                      ),
-
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                            color: _theme.primaryColor,
-                            width: 1.1
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                            color: _theme.primaryColor,
-                            width: 1.15
-                        ),
-                      ),
-                    ),
-                    onChanged: (String? value) {},
-                    onSaved: (String? value) {
-                      print(value);
-                      // This optional block of code can be used to run
-                      // code when the user saves the form.
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Field is required';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  SizedBox(height: 30.0,),
-
-                  TextFormField(
-                    // controller: username,
-                    textInputAction: TextInputAction.next,
-                    cursorColor: _theme.primaryColor,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 13,
-                    ),
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 5),
-                      hintText: 'Email',
-                      hintStyle: TextStyle(
-                        color: Colors.black87.withOpacity(0.3),
-                        fontSize: 13,
-                      ),
-
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                            color: _theme.primaryColor,
-                            width: 1.1
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                            color: _theme.primaryColor,
-                            width: 1.15
-                        ),
-                      ),
-                    ),
-                    onChanged: (String? value) {},
-                    onSaved: (String? value) {
-                      print(value);
-                      // This optional block of code can be used to run
-                      // code when the user saves the form.
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Field is required';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  SizedBox(height: 30.0,),
-
-                  TextFormField(
-                    textInputAction: TextInputAction.next,
-                    cursorColor: _theme.primaryColor,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 13,
-                    ),
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 5),
-                      hintText: 'Phone No...',
-                      hintStyle: TextStyle(
-                        color: Colors.black87.withOpacity(0.3),
-                        fontSize: 13,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.phone,
-                        color: Colors.black87.withOpacity(0.3),
-                        size: 18,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                            color: _theme.primaryColor,
-                            width: 1.1
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                            color: _theme.primaryColor,
-                            width: 1.15
-                        ),
-                      ),
-                    ),
-                    onChanged: (String? value) {},
-                    onSaved: (String? value) {
-                      print(value);
-                      // This optional block of code can be used to run
-                      // code when the user saves the form.
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Field is required';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  SizedBox(height: 30.0,),
-
-                  ElevatedButton(
-                    child: Container(
-                      height: 20,
-                      child: Center(
-                        child: Text('Create Account'),
-                      ),
-                    ),
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                      backgroundColor: MaterialStateProperty.all<Color>(_theme.primaryColor),
-                      // shape: MaterialStateProperty.all<
-                      //     RoundedRectangleBorder>(
-                      //     RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(30.0),
-                      //         side: BorderSide(
-                      //           color: Colors.black,
-                      //         )
-                      //     )
-                      // )
-                    ),
-                    onPressed: () async{
-                      /**
-                          var _otp = OtpRequest.request(phone.text);
-                          _requestOtpToken(context, _otp);
-                       **/
-
-
-
-                      Navigator.of(context).push(MaterialPageRoute<void>(
-                        builder: (BuildContext context) => ScreenVerifyNumber(),
-                      ),
-                      );
-                    },
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Already have an account?",
-                          style: TextStyle(
-                              color: Colors.black
-                          ),
-                        ),
-
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (
-                                context) => ScreenCreateAccount()));
-                          },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            visualDensity: VisualDensity(horizontal: -2, vertical: -4),
-                            primary: Colors.black.withOpacity(0.2),
-                          ),
-                          child:  Text(
-                            "Login",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13.0,
-                                color: Colors.black
-                            ),
-                          ),
-                        ),
-
-                        Text(
-                          "now",
-                          style: TextStyle(
-                              color: Colors.black
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
+            }, child: Text('Send Verification'.toUpperCase()),
+              style: Utils.coloredButtonStyleWithRadius(_theme.primaryColor, 25.0, elevation: 4.0 ),)
           ],
         ),
-      ),
+      )
     );
   }
 
