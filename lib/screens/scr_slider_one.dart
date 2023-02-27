@@ -6,6 +6,8 @@ import 'package:intro_slider/intro_slider.dart';
 import 'package:samapp/screens/index.dart';
 import 'package:samapp/utils/colors.dart';
 
+import '../utils/text_style.dart';
+
 class ScreenWelcomeSlider extends StatefulWidget{
 
   IntroSliderState createState()=> new IntroSliderState();
@@ -22,17 +24,17 @@ class IntroSliderState extends State<ScreenWelcomeSlider>{
         "Our smart gas monitor which synchronizes remotely to the Gas App ensures that your are constantly aware of the gas level in your cylinder",
         //pathImage: "images/lpg.png",
         centerWidget:  CircleAvatar(
-          backgroundColor: colorPrimary,
-          radius: 120,
+          backgroundColor: Colors.blue,
+          radius: 73,
           child: CircleAvatar(
-            radius: 119,
+            radius: 71,
             backgroundColor: scaffoldBackgroundColor,
             backgroundImage:  AssetImage('images/lpg.png',),
           ),
         ),//Image.asset("images/lpg.png"),
         backgroundColor: scaffoldBackgroundColor,
-        styleDescription: TextStyle(color: Colors.black,fontSize: 18.0),
-        styleTitle: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 25.0)
+        styleDescription: kTextStyle,
+        styleTitle: kBoldTitleTextStyle2
       ),
     );
     contents.add(
@@ -41,17 +43,17 @@ class IntroSliderState extends State<ScreenWelcomeSlider>{
         description:
         "Request LPG and get it delivered at your doorsteps!",
           centerWidget:  CircleAvatar(
-        backgroundColor: colorPrimary,
-        radius: 120,
+        backgroundColor: Colors.blue,
+        radius: 73,
         child: CircleAvatar(
-          radius: 119,
+          radius: 71,
           backgroundColor: scaffoldBackgroundColor,
           backgroundImage:  AssetImage('images/delivery.jpeg',),
         ),
       ), //Image.asset("images/delivery.jpeg"),
         backgroundColor: Colors.white,
-          styleDescription: TextStyle(color: Colors.black,fontSize: 18.0),
-          styleTitle: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 25.0)
+          styleDescription: kTextStyle,
+          styleTitle: kBoldTitleTextStyle2
       ),
     );
     contents.add(
@@ -61,17 +63,17 @@ class IntroSliderState extends State<ScreenWelcomeSlider>{
           "Our smart gas leakage detector ensures the safety of your home. This device cuts off gas supply when the leakage is detected and sends notification to the user",
           //pathImage: "images/lpg.png",
           centerWidget:  CircleAvatar(
-            backgroundColor: colorPrimary,
-            radius: 120,
+            backgroundColor: Colors.blue,
+            radius: 73,
             child: CircleAvatar(
-              radius: 119,
+              radius: 71,
               backgroundColor: scaffoldBackgroundColor,
               backgroundImage:  AssetImage('images/leakage.png',),
             ),
           ), //Image.asset("images/leakage.png",),
           backgroundColor: scaffoldBackgroundColor,
-          styleDescription: TextStyle(color: Colors.black,fontSize: 18.0),
-          styleTitle: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 25.0)
+          styleDescription: kTextStyle,
+          styleTitle: kBoldTitleTextStyle2
       ),
     );
     contents.add(
@@ -81,17 +83,17 @@ class IntroSliderState extends State<ScreenWelcomeSlider>{
         "With Gas App, users can now have access to daily, monthly and yearly gas consumption data.",
         //pathImage: "images/icon.png",
            centerWidget:  CircleAvatar(
-             backgroundColor: colorPrimary,
-             radius: 120,
+             backgroundColor: Colors.blue,
+             radius: 73,
              child: CircleAvatar(
-               radius: 119,
+               radius: 71,
                backgroundColor: scaffoldBackgroundColor,
                backgroundImage:  AssetImage('images/report.png',),
              ),
            ), //  Image.asset("images/report.png", width: 300, height: 300,),
           backgroundColor: scaffoldBackgroundColor,
-          styleDescription: TextStyle(color: Colors.black,fontSize: 18.0),
-          styleTitle: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 25.0)
+           styleDescription: kTextStyle,
+           styleTitle: kBoldTitleTextStyle2
       ),
     );
     super.initState();
@@ -107,6 +109,25 @@ class IntroSliderState extends State<ScreenWelcomeSlider>{
     return IntroSlider(
       key: UniqueKey(),
       listContentConfig: contents,
+      indicatorConfig: IndicatorConfig(
+        colorIndicator: Colors.lightBlue,
+        colorActiveIndicator: Colors.blue
+      ),
+      skipButtonStyle: ButtonStyle(
+        textStyle: MaterialStateProperty.all<TextStyle>(kBoldTextStyle),
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        // backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+      ),
+      nextButtonStyle: ButtonStyle(
+        textStyle: MaterialStateProperty.all<TextStyle>(kBoldTextStyle),
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        // backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+      ),
+      doneButtonStyle: ButtonStyle(
+        textStyle: MaterialStateProperty.all<TextStyle>(kBoldTextStyle),
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        // backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+      ),
       onDonePress: onDonePress,
     );
   }

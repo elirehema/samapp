@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:samapp/model/index.dart';
-import 'package:samapp/screens/scr_create_ac.dart';
+import 'package:samapp/screens/auth/scr_create_ac.dart';
 import 'package:samapp/screens/scr_home.dart';
-import 'package:samapp/screens/scr_login_email.dart';
+import 'package:samapp/screens/auth/scr_login_email.dart';
 import 'package:samapp/utils/index.dart';
+import 'package:samapp/utils/text_style.dart';
 import 'package:samapp/widgets/index.dart';
 
-import '../data/post_api_service.dart';
+import '../../data/post_api_service.dart';
 
 class ScreenLogin extends StatelessWidget {
   var username,
@@ -18,7 +19,7 @@ class ScreenLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData _theme = Theme.of(context);
+    // ThemeData _theme = Theme.of(context);
     return Scaffold(
       backgroundColor: scaffoldBackgroundColor,
 
@@ -34,7 +35,7 @@ class ScreenLogin extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: Icon(
                   Icons.language_rounded,
-                  color: colorPrimary,
+                  color: Colors.blue,
                 ),
               ),
             ),
@@ -45,11 +46,7 @@ class ScreenLogin extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 "Login",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0,
-                    color: Colors.black
-                ),
+                style: kBoldTitleTextStyle2
               ),
             ),
 
@@ -63,17 +60,15 @@ class ScreenLogin extends StatelessWidget {
 
                   TextFormField(
                     textInputAction: TextInputAction.next,
-                    cursorColor: _theme.primaryColor,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 13,
-                    ),
+                    cursorColor: Colors.black,
+                    style: kTextStyle,
                     enableSuggestions: false,
                     autocorrect: false,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 5),
                       hintText: 'Phone No...',
                       hintStyle: TextStyle(
+                        fontFamily: kMainFont,
                         color: Colors.black87.withOpacity(0.3),
                         fontSize: 13,
                       ),
@@ -85,32 +80,29 @@ class ScreenLogin extends StatelessWidget {
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.send,
-                          color: _theme.primaryColor,
+                          color: Colors.blue,
                           size: 18,
                         ),
 
                         onPressed: (){
-                          var request = AuthenticationRequest.from("root", "password");
-                          this._loginAuthenticate(context, request);
-                          /**
-                              Navigator.of(context).push(MaterialPageRoute<void>(
-                              builder: (BuildContext context) => ScreenHome(),
-                              ),
-                              );
-                           **/
+                          // var request = AuthenticationRequest.from("root", "password");
+                          // this._loginAuthenticate(context, request);
+
+                              Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => ScreenHome()),);
+
                         },
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: _theme.primaryColor,
+                            color: Colors.blue,
                             width: 1.1
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: _theme.primaryColor,
+                            color: Colors.blue,
                             width: 1.15
                         ),
                       ),
@@ -131,7 +123,7 @@ class ScreenLogin extends StatelessWidget {
 
                   SizedBox(height: 10.0,),
 
-                  Divider(color: _theme.primaryColorLight,),
+                  Divider(),
 
                   SizedBox(height: 25.0,),
 
@@ -150,14 +142,17 @@ class ScreenLogin extends StatelessWidget {
 
                               SizedBox(width: 5,),
 
-                              Text('Login with email'),
+                              NormalTextWidget(
+                                text: 'Login with email',
+                                color: Colors.white,
+                              )
                             ],
                           ),
                         ),
                       ),
                       style: ButtonStyle(
                           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor: MaterialStateProperty.all<Color>(_theme.primaryColor),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                           // shape: MaterialStateProperty.all<
                           //     RoundedRectangleBorder>(
                           //     RoundedRectangleBorder(
@@ -184,9 +179,7 @@ class ScreenLogin extends StatelessWidget {
                 children: [
                   Text(
                       "Don't have an account?",
-                    style: TextStyle(
-                        color: Colors.black
-                    ),
+                    style: kTextStyle,
                   ),
 
                   TextButton(
@@ -201,19 +194,13 @@ class ScreenLogin extends StatelessWidget {
                     ),
                     child:  Text(
                       "Register",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0,
-                        color: Colors.black
-                    ),
+                      style: kBoldTextStyle,
                     ),
                   ),
 
                   Text(
                     "now",
-                    style: TextStyle(
-                        color: Colors.black
-                    ),
+                    style: kTextStyle,
                   ),
                 ],
               ),

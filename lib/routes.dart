@@ -48,6 +48,7 @@ class MyApp extends StatefulWidget {
 }
 class _MyAppState extends State<MyApp> {
   ThemeMode _themeMode = ThemeMode.system;
+
   final routes = <String, WidgetBuilder>{
       '/craccount': (context) => ScreenWelcomeSlider(),
       '/index': (BuildContext context) => ScreenIndex(),
