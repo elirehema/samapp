@@ -22,7 +22,7 @@ class _GasSizeScreenState extends State<GasSizeScreen> {
           foregroundColor: Colors.white,
           backgroundColor: Colors.blue,
           title: BoldTextWidget(
-            text: 'Gas Quantity',
+            text: 'Gas Size',
             color: Colors.white,
           ),
           centerTitle: true,

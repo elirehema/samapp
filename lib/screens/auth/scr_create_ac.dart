@@ -1,12 +1,13 @@
 import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:progress_dialog/progress_dialog.dart';
+// import 'package:progress_dialog/progress_dialog_null_safe.dart';
+import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 import 'package:samapp/screens/index.dart';
 import 'package:samapp/utils/text_style.dart';
 import 'package:samapp/widgets/index.dart';
 import 'package:provider/provider.dart';
-
-import 'package:progress_dialog/progress_dialog.dart';
 import '../../data/post_api_service.dart';
 import '../../model/mod_otp_request.dart';
 import '../../utils/colors.dart';
@@ -293,20 +294,26 @@ class ScreenCreateAccount extends StatelessWidget{
  Future<void> _requestOtpToken(BuildContext context, OtpRequest request) async {
    var sp = SharedPreference.getInstance();
    int statusCode = 0;
-   ProgressDialog pr = new ProgressDialog(context);
+   // ProgressDialog pr = new ProgressDialog(context);
+   SimpleFontelicoProgressDialog _dialog = SimpleFontelicoProgressDialog(context: context);
 
-   pr.update(
-     progress: 50.0,
-     message: "Please wait...",
-     progressWidget: Container(
-         padding: EdgeInsets.all(8.0), child: CircularProgressIndicator()),
-     maxProgress: 100.0,
-     progressTextStyle: TextStyle(
-         color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
-     messageTextStyle: TextStyle(
-         color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
-   );
-   pr.show();
+   // pr.update(
+   //   progress: 50.0,
+   //   message: "Please wait...",
+   //   progressWidget: Container(
+   //       padding: EdgeInsets.all(8.0), child: CircularProgressIndicator()),
+   //   maxProgress: 100.0,
+   //   progressTextStyle: TextStyle(
+   //       color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+   //   messageTextStyle: TextStyle(
+   //       color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+   // );
+
+
+   // pr.show();
+
+   _dialog.show(message: 'Please wait...', type: SimpleFontelicoProgressDialogType.hurricane);
+
    Future<Response> response =
    Provider.of<PostApiService>(context, listen: false)
        .requestOtpToken(request);
@@ -318,7 +325,7 @@ class ScreenCreateAccount extends StatelessWidget{
          if (statusCode == 200)
            {
              await sp.setStringToSF(enumKey.PHONE_NUMBER.name, request.phone!),
-             pr.hide(),
+             _dialog.hide(),
              Navigator.pushReplacement<void, void>(
    context,
    MaterialPageRoute<void>(

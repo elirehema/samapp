@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:samapp/utils/text_style.dart';
 
+import 'gas_details.dart';
+
 
 class GasPriceListScreen extends StatefulWidget{
   GasPriceListScreenState createState()=> new GasPriceListScreenState();
@@ -26,7 +28,7 @@ class GasPriceListScreenState extends State<GasPriceListScreen>{
               onTap: (){},
               child: TextButton(
                 onPressed: (){
-                  // Navigator.push(context, createRightRoute(VerifyEmailScreen(userEmail: userInfo.email,)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => GasDetailsScreen()));
                 },
                 style: TextButton.styleFrom(
                   // padding: EdgeInsets.zero,

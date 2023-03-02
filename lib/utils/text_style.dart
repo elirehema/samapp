@@ -33,6 +33,12 @@ TextStyle kBoldTitleTextStyle2 = TextStyle(
     fontFamily: kMainBoldFont
 );
 
+TextStyle kBoldTitleTextStyle3 = TextStyle(
+    fontSize: 40,
+    color: Colors.black,
+    fontFamily: kMainBoldFont
+);
+
 class NormalTextWidget extends StatelessWidget {
   final text;
   final color;

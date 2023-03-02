@@ -25,7 +25,7 @@ class ScreenHomeState extends State<ScreenHome>{
 
     HomeTab(),
 
-    CartTab(),
+    ShoppingCartScreen(),
 
     OrderTab(),
 

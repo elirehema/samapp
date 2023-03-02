@@ -1,7 +1,7 @@
 import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:progress_dialog/progress_dialog.dart';
+// import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:samapp/model/index.dart';
 import 'package:samapp/screens/auth/scr_create_ac.dart';
@@ -10,6 +10,7 @@ import 'package:samapp/screens/auth/scr_login_email.dart';
 import 'package:samapp/utils/index.dart';
 import 'package:samapp/utils/text_style.dart';
 import 'package:samapp/widgets/index.dart';
+import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 
 import '../../data/post_api_service.dart';
 
@@ -217,20 +218,27 @@ class ScreenLogin extends StatelessWidget {
       AuthenticationRequest request) async {
     var sp = SharedPreference.getInstance();
     int statusCode = 0;
-    ProgressDialog pr = new ProgressDialog(context);
+    // ProgressDialog pr = new ProgressDialog(context);
+    SimpleFontelicoProgressDialog _dialog = SimpleFontelicoProgressDialog(context: context);
 
-    pr.update(
-      progress: 50.0,
-      message: "Please wait...",
-      progressWidget: Container(
-          padding: EdgeInsets.all(8.0), child: CircularProgressIndicator()),
-      maxProgress: 100.0,
-      progressTextStyle: TextStyle(
-          color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
-      messageTextStyle: TextStyle(
-          color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
-    );
-    pr.show();
+    // pr.update(
+    //   progress: 50.0,
+    //   message: "Please wait...",
+    //   progressWidget: Container(
+    //       padding: EdgeInsets.all(8.0), child: CircularProgressIndicator()),
+    //   maxProgress: 100.0,
+    //   progressTextStyle: TextStyle(
+    //       color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+    //   messageTextStyle: TextStyle(
+    //       color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+    // );
+    // pr.show();
+
+    _dialog.show(
+        message: 'Please wait...',
+        textStyle: kBoldTextStyle,
+        type: SimpleFontelicoProgressDialogType.hurricane);
+
     Future<Response> response =
     Provider.of<PostApiService>(context, listen: false).authenticate(request);
     response.then((v) async => {
@@ -239,7 +247,7 @@ class ScreenLogin extends StatelessWidget {
         {
           if (statusCode == 200)
             {
-              pr.hide(),
+              _dialog.hide(),
               Navigator.pushReplacement<void, void>(
                 context,
                 MaterialPageRoute<void>(

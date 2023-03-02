@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:samapp/utils/text_style.dart';
-
-import '../../utils/colors.dart';
+import '../add_address.dart';
+import '../delivery_address_list.dart';
 import '../gas_size.dart';
 import '../scr_gas_category.dart';
 
@@ -14,8 +14,6 @@ class MenuItem {
   final String title, resource, route;
   const MenuItem(this.title,  this.resource, this.route);
 }
-
-const List<String> prices = <String>["215","255","90"];
 
 const List<MenuItem> items = <MenuItem>[
   MenuItem("Order LPG","delivery.png","ff"),
@@ -30,9 +28,9 @@ class GasCategoryItem {
 }
 
 const List<GasCategoryItem> gasCategory = <GasCategoryItem>[
-  GasCategoryItem("oryx_logo.png","ff"),
   GasCategoryItem("meru_gas_logo.png",""),
   GasCategoryItem("cam_gas_logo.png",""),
+  GasCategoryItem("oryx_logo.png","ff"),
   GasCategoryItem("taifa_gas_logo.jpg",""),
   GasCategoryItem("ag_gas_logo.jpeg","")
 ];
@@ -48,7 +46,6 @@ class HomeTabState extends State<HomeTab>{
   }
   @override
   Widget build(BuildContext context) {
-    ThemeData _theme = Theme.of(context);
     return Scaffold(
       backgroundColor: Colors.grey[100]!,
       appBar: AppBar(
@@ -295,7 +292,7 @@ class HomeTabState extends State<HomeTab>{
 
                       TextButton(
                         onPressed: (){
-                          // Navigator.push(context, createRightRoute(VerifyEmailScreen(userEmail: userInfo.email,)));
+                          Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => DeliveryAddressListScreen(),),);
                         },
                         style: TextButton.styleFrom(
                           // padding: EdgeInsets.zero,

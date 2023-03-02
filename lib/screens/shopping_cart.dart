@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:samapp/utils/text_style.dart';
 import 'package:badges/badges.dart' as badges;
-import '../delivery_address_list.dart';
+
+import 'delivery_address_list.dart';
 
 
 class ShoppingCartScreen extends StatefulWidget{
